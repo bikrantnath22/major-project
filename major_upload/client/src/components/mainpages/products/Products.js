@@ -73,9 +73,7 @@ function Products() {
         
         <Slideshow/>
         <Filters/>
-        <div style={{fontSize:'25px',marginLeft:'28%',color:'crimson'}}>
-            Please Select your Location and Date before Booked a Hotel
-        </div>
+        
 
             
         
@@ -90,7 +88,8 @@ function Products() {
                 <button onClick={deleteAll}>Delete ALL</button>
             </div>
         }
-
+        { 
+         isAdmin && 
         <div className="products">
             {
                 products.map(product => {
@@ -99,6 +98,7 @@ function Products() {
                 })
             } 
         </div>
+        }
 
         <LoadMore />
         {products.length === 0 && <Loading />}
