@@ -1,0 +1,65 @@
+* {
+  padding: 0;
+  /* box-sizing: border-box; */
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+ 
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.App{
+   max-width: 100%;
+  /* min-height: 50vh; */
+  /* margin: 0 auto; */
+  padding: 10px 20px;
+  box-shadow: 0 0 5px rgb(31, 31, 31);
+  
+  
+  height: 100%;
+
+  background-color: rgb(255, 245, 206);
+  /* Center and scale the image nicely */
+ /* background-position: center;
+  background-repeat: no-repeat; */
+  /* background-size: cover;
+  background-repeat: no-repeat;
+  
+  background-image:  url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/most-beautiful-places-america-michigan-1557773949.jpg")  */
+  
+}
+
+a{
+  text-decoration: none;
+  
+}
+ul li{
+  list-style: none;
+}
+button{
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+}
+/*-----header*/
+@import url("./components/headers/header.css");
+/*-----products-----*/
+@import url("./components/mainpages/products/products.css");
+/*-----products details-----*/
+@import url("./components/mainpages/detailProduct/detailProduct.css");
+/*-----login page-----*/
+@import url("./components/mainpages/auth/login.css");
+/* ----cart page */
+@import url("./components/mainpages/cart/cart.css");
+/* ----history page */
+@import url("./components/mainpages/history/history.css");
+/* ----categories page */
+@import url("./components/mainpages/categories/categories.css");
+/* ----create product page */
+@import url("./components/mainpages/createProduct/createProduct.css");
+

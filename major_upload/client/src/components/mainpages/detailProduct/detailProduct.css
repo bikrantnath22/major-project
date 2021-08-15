@@ -1,0 +1,95 @@
+
+
+
+.detail{
+    max-width: 100% !important;
+   
+    overflow: hidden;
+    height: 350px;
+    padding: 20px;
+    box-shadow:  0 0 15px #ddd;
+    margin:10px 0;
+    position: relative;
+    /* border: 1px solid rgb(56, 56, 56); */
+    background-color: #ffffff;
+}
+.detail img{
+    /* max-width: 400px; */
+    width: 30%;
+    
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s;
+    float: left;
+    margin-right: 30px;
+    border-radius: 5px;
+}
+.detail img:hover {
+    transform: scale(1.050); 
+}
+.box-detail{
+    max-width: 90%;
+    width: 100%;
+    margin: 5px 20px;
+}
+/* .box-detail .row{
+    display: flex;
+    justify-content: space-between;
+    
+} */
+.box-detail h2{
+    
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+    letter-spacing: 2px;
+    font-weight: 2rem;
+}
+.box-detail h5{
+    color:green
+}
+.box-detail span{
+    color: crimson;
+}
+
+.box-detail .cart{
+    background: teal;
+    color: white;
+    margin-top: 10px;
+    padding: 10px 25px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 8px;
+}
+.products1{
+    width: 100%;
+   
+    
+    
+    
+}
+/* .comments h2{
+    text-align: left;
+}
+.reviews{
+    width: 115px;
+    margin: 10px 0;
+}
+.reviews input{
+    display: none;
+}
+.reviews label{
+    color: #999;
+    margin: 5px 0;
+    padding-right: 5px;
+    cursor: pointer;
+    float: right;
+}
+.reviews input:not(:checked) ~ label:hover,
+.reviews input:not(:checked) ~ label:hover ~ label{
+    color: crimson;
+}
+.reviews input:checked ~ label{
+    color: crimson;
+} */

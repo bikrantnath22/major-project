@@ -1,0 +1,139 @@
+import React, {useContext, useState, useEffect} from 'react'
+import {GlobalState} from '../../../GlobalState'
+import axios from 'axios'
+import {useLocation} from 'react-router-dom';
+import PaypalButton from './PayPalButton'
+
+
+
+function Cart(){
+    const state = useContext(GlobalState)
+    const [cart, setCart] = state.userAPI.cart
+    const [token] = state.token
+    const location = useLocation() ;
+    const [total, setTotal] = useState(0)
+    const [date,setDates] = useState('') ;
+
+
+    useEffect(()=>{ 
+       const date = location.state ; 
+       setDates(date) ;
+       
+        const getTotal =() =>{
+            const total =cart.reduce((prev,item)=>{
+                return prev + (item.price * item.quantity)
+            },0)
+            setTotal(total)
+        }
+        getTotal()
+    },[cart])
+
+
+    const addToCart = async (cart) =>{
+        console.log(cart);
+        await axios.patch('/user/addcart', {cart}, {
+            headers: {Authorization: token}
+        })
+    }
+
+
+    const increment = (id) =>{
+        cart.forEach(item=>{
+            if(item._id ===id){
+                item.quantity +=1
+            }
+        })
+
+        setCart([...cart])
+        addToCart(cart)
+     }
+    const decrement = (id) =>{
+        cart.forEach(item=>{
+            if(item._id ===id){
+                item.quantity ===1 ? item.quantity =1 :item.quantity -=1
+            }
+        })
+
+        setCart([...cart])
+        addToCart(cart)
+    }
+
+    const removeProduct = id =>{
+        if(window.confirm("Do you want to delete this ?")){
+            cart.forEach((item, index) => {
+                if(item._id === id){
+                    cart.splice(index, 1)
+                }
+            })
+
+            setCart([...cart])
+            addToCart(cart)
+        }
+    }
+
+    const tranSuccess =async (payment) =>{
+        
+        const {paymentID,address,email}=payment;
+
+        await axios.post('/api/payment',{cart, paymentID, address,email},{
+            headers: {Authorization:token}
+        })
+        setCart([])
+        addToCart([])
+        alert("You have successfully booked your hotel.")
+        // setCallback(!callback)
+    }
+
+
+
+    if(cart.length === 0)
+        return <h2 style={{textAlign: "center", fontSize: "5rem"}}>Cart Empty</h2> 
+    return(
+        <div>
+             {
+                cart.map(product => (
+                    <div className="detail cart" key={product._id}>
+                        {product.images &&<img src={product.images.url} alt="" />}
+                        <div className="box-detail">
+                            <h2>{product.title}</h2>
+                            <h3>Rs-{product.price * product.quantity}</h3>
+                            <p>{product.description}</p>
+                            
+                            <h2>{product.hotelName}</h2>
+                            <p>{product.startDate}</p>
+
+                            
+                            
+
+                            <div className="amount" style={{fontSize:'20px'}}>Add Room Here
+                            <br/>
+                                <button style={{borderRadius:'50px'}} onClick={() => decrement(product._id)}> - </button>
+                                <span>{product.quantity}</span>
+                                <button style={{borderRadius:'50px'}}onClick={() => increment(product._id)}> + </button>
+                            </div>
+
+
+                            <div className="delete"
+                            onClick={() => removeProduct(product._id)}>
+                                X
+                            </div>
+                            
+                    
+                    
+                   
+
+                         </div>
+                    </div>
+                ))
+            }
+            <div className="total">
+            
+                <h3>Total: Rs-: {total}</h3>
+                <PaypalButton
+                total={total}
+                tranSuccess={tranSuccess}/>
+            </div>
+        </div>
+    )
+}
+export default Cart
