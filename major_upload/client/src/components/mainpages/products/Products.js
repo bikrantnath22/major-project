@@ -72,7 +72,14 @@ function Products() {
         <Search/>
         
         <Slideshow/>
-        <Filters/>
+        
+        {
+          isAdmin && 
+            <div>
+            <Filters/>
+        </div>
+        }
+        
         
 
             
